@@ -77,17 +77,17 @@ paths:
         - name: ID
           in: formData
           description: ID of the item
-          required: false
+          required: true
           type: string
         - name: size
           in: formData
           description: size of the item
-          required: false
+          required: true
           type: string
         - name: colour
           in: formData
           description: colour of the item
-          required: false
+          required: true
           type: string
       responses:
         200:
