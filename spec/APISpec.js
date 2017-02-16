@@ -74,3 +74,62 @@ describe("Test /searchItem", function() {
 	
 
 });
+
+
+// Test for /sellItem
+describe("Test /sellItem", function() {
+	//set the data
+	var data = {
+			ID: 3,
+            size : "S",
+            colour: "yellow"
+		};
+	
+
+	//legal request
+	it("to returns status code 200", function(done) {
+	  client.post(base_url + "sellItem/", data, function(err, res, body) {
+		expect(body).toEqual([
+			{
+                    ID: 3,
+                    type: "sweatshirt",
+                    size: "S",
+                    quantity: 2,
+                    colour: "yellow",
+                    price: 100,
+                    season: 2016
+	}]
+		);
+
+		done();
+	  });
+	});
+
+	//item non existing
+	var data1 = {
+        ID: "10",
+        size: "K",
+        colour: "purple"
+    };
+    
+	it("to returns status code 404", function(done) {
+	  client.post(base_url + "sellItem/", data1, function(err, res, body) {
+		expect(res.statusCode).toBe(404);
+		done();
+	  });
+	});
+    
+    //bad request
+	var data1 = {
+        sci: "10"
+    };
+    
+	it("to returns status code 406", function(done) {
+	  client.post(base_url + "sellItem/", data1, function(err, res, body) {
+		expect(res.statusCode).toBe(406);
+		done();
+	  });
+	});
+	
+
+});

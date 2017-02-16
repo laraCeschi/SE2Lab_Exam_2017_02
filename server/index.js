@@ -275,6 +275,54 @@ app.post('/restockItem', function(request, response)
 //ADD YOUR CODE BELOW THIS COMMENT, IF IT IS POSSIBLE
 
 
+/**
+ * @brief updates price with discount
+ * @return the modified items
+ */
+app.post('/sales', function(request, response) 
+{
+	var headers = {};
+	headers["Access-Control-Allow-Origin"] = "*";
+	headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+	headers["Access-Control-Allow-Credentials"] = false;
+	headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+	headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
+	headers["Content-Type"] = "application/json";
+
+	var year;
+    var discount;
+	
+	//check body and parameters
+	if ( typeof request.body !== 'undefined' && request.body)
+	{
+        //year
+		if ( typeof request.body.year !== 'undefined' && request.body.year)
+			 year = request.body.year;
+		else 
+			year = null;
+        
+        //discount
+        if ( typeof request.body.discount !== 'undefined' && request.body.discount)
+            discount = request.body.discount;
+		else 
+			discount = null;
+
+	}
+	else
+	{
+		year = null;
+	}
+    
+	
+    if (year!=null && discount!=null)
+	{
+		//aceptable input
+  			response.writeHead(200, headers);
+			response.end(JSON.stringify(shopManager.sales(year, discount)));
+	}
+
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

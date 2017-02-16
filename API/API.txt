@@ -20,6 +20,19 @@ paths:
         200:
           description: welcome page
           
+  /showWarehouse:
+    post:
+      summary: show the content of the warehouse
+      description: it returns the list of items that are in the warehouse
+      responses:
+        200:
+          description: list of items found
+          schema: 
+            type: array
+            items:
+              $ref: "#/definitions/item"
+
+          
   /searchItem:
     post:
       summary: search for items
@@ -89,7 +102,61 @@ paths:
                 type: integer
         404:
           description: no items found with specified criteria
-            
+          
+  /restockItem:
+    post:
+      summary: add an item to the warehouse
+      description: it adds the item to the warehouse, increasing the quantity in warehouse or adding a new item
+      parameters:
+        - name: ID
+          in: formData
+          description: ID of the item
+          required: true
+          type: string
+        - name: size
+          in: formData
+          description: size of the item
+          required: true
+          type: string
+        - name: type
+          in: formData
+          description: type of the item
+          required: true
+          type: string
+        - name: quantity
+          in: formData
+          description: quantity of the item
+          required: true
+          type: string
+        - name: season
+          in: formData
+          description: year of the item
+          required: true
+          type: string
+        - name: price
+          in: formData
+          description: price of the item
+          required: true
+          type: string
+        - name: colour
+          in: formData
+          description: colour of the item
+          required: true
+          type: string
+      responses:
+        200:
+          description: object of the added item
+          schema: 
+              $ref: "#/definitions/item"
+        406:
+          description: ID of error
+          schema: 
+            properties:
+              error:
+                type: integer
+        400:
+          description: too many items
+          
   /sales:
     post:
       summary: returns items on sale and update the databse with new prices
