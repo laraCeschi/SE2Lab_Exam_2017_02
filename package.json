@@ -1,0 +1,26 @@
+{
+  "name": "se2_feb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laraCeschi/SE2Lab_Exam_2017_02.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laraCeschi/SE2Lab_Exam_2017_02/issues"
+  },
+  "homepage": "https://github.com/laraCeschi/SE2Lab_Exam_2017_02#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "util": "^0.10.3"
+  }
+}
